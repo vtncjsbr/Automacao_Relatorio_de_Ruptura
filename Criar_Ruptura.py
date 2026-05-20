@@ -16,8 +16,8 @@ soma_formatada = (f'R${soma_total:,.2f} perdidos')
 
 filtrar['Informou_no_grupo'] = ''
 
-porcentagem_informou_sim = ('=TEXTO(CONT.SE(H2:H{};"sim")/CONT.VALORES(H2:H{});"0%")'.format(len(filtrar)+1, len(filtrar)+1))
-porcentagem_informou_nao = ('=TEXTO(CONT.SE(H2:H{};"não")/CONT.VALORES(H2:H{});"0%")'.format(len(filtrar)+1, len(filtrar)+1))
+porcentagem_informou_sim = '=TEXT(COUNTIF(H2:H{}, "sim")/COUNTA(H2:H{}), "0%")'.format(len(filtrar)+1, len(filtrar)+1)
+porcentagem_informou_nao = '=TEXT(COUNTIF(H2:H{}, "não")/COUNTA(H2:H{}), "0%")'.format(len(filtrar)+1, len(filtrar)+1)
 
 nova_linha_soma = pd.DataFrame([{
     'sku_original':'Total',
