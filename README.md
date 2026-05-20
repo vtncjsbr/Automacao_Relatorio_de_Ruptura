@@ -1,6 +1,6 @@
 # Projeto Ruptura
-Automação em python para gerar relatório de ruptura formatados em Excel.  
-Arquivo "Ruptura_exemplo.xlsx" é a planilha sem nenhum tratamento.  
+Automação em python para gerar relatório de ruptura formatados em Excel.<br>
+Arquivo "Ruptura_exemplo.xlsx" é a planilha sem nenhum tratamento.<br>
 Apenas a coluna "Informou_no_grupo" precisa ser preenchida manualmente conferindo se o item rupturado foi informado ou não pelo colaborador preenchendo com "sim" ou "não".
 
 ## Funcionalidades
