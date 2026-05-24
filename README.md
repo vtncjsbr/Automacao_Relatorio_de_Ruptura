@@ -1,4 +1,8 @@
 # Projeto Ruptura
+## Objetivo
+Objetivo do código é de economizar tempo na criação de relatório de rupturas de produtos que tinha que ser feito diariamente.
+
+## Observações
 Automação em python para gerar relatório de ruptura formatados em Excel.<br>
 Arquivo "Ruptura_exemplo.xlsx" é a planilha sem nenhum tratamento.<br>
 Apenas a coluna "Informou_no_grupo" precisa ser preenchida manualmente conferindo se o item rupturado foi informado ou não pelo colaborador preenchendo com "sim" ou "não".
