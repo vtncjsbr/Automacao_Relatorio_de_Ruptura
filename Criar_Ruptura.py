@@ -51,8 +51,7 @@ def criar_relatorio():
     ########################################### Extrair texto com pytesseract ###########################################
 
     def imagem_para_texto(pasta_prints = img): 
-        caminho = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-        # caminho = Path.cwd() / 'Tesseract-OCR' / 'tesseract.exe'
+        caminho = Path.cwd() / 'Tesseract-OCR' / 'tesseract.exe'
         pytesseract.pytesseract.tesseract_cmd = caminho
 
         lista_sku = {}
