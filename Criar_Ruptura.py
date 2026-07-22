@@ -10,7 +10,7 @@ import sqlite3
 from platformdirs import user_desktop_dir
 ########################################### Criar pastas ###########################################
 
-def pasta_principal():
+def pasta_principal() -> Path:
     desktop = user_desktop_dir()
     main = Path(desktop) / "Arquivos Ruptura"
     Path(main).mkdir(parents=True, exist_ok=True)
@@ -31,10 +31,10 @@ destino_pasta = criar_pasta_graficos()
 
 ########################################### Criar Planilha ###########################################
 
-def criar_relatorio():
+def criar_relatorio() -> pd.DataFrame:
     caminho_arquivo = askopenfilename(title='Selecione o arquivo de Ruptura', filetypes=[('Arquivo XLSX', '*.xlsx')])
 
-    def preparar_dataframe(caminho_arquivo):
+    def preparar_dataframe(caminho_arquivo: str) -> pd.DataFrame:
         df = pd.read_excel(caminho_arquivo)
         df['Informou_no_grupo'] = ''
         df['preço total'] = ''
@@ -50,24 +50,24 @@ def criar_relatorio():
 
     ########################################### Extrair texto com pytesseract ###########################################
 
-    def imagem_para_texto(pasta_prints = img): 
+    def imagem_para_texto(pasta_prints: Path = img) -> dict[int, int]: 
         caminho = Path.cwd() / 'Tesseract-OCR' / 'tesseract.exe'
         pytesseract.pytesseract.tesseract_cmd = caminho
 
-        lista_sku = {}
+        lista_sku: dict[int, int] = {}
 
         for foto in pasta_prints.iterdir():
-            foto = cv2.imread(foto)
-            texto = pytesseract.image_to_string(foto)
+            imagem = cv2.imread(foto)
+            texto = pytesseract.image_to_string(imagem)
             texto_formatado = texto.split(' ')
             texto_formatado = [item.replace('\n', ' ') for item in texto_formatado]
             texto_formatado = " ".join(texto_formatado).split(' ')
 
             for item in texto_formatado:
                 try:
-                    item = int(item)
-                    if len(str(item)) >=3 and len(str(item)) <= 6:
-                        lista_sku[item] = lista_sku.get(item,0) + 1
+                    numero = int(item)
+                    if len(str(numero)) >=3 and len(str(numero)) <= 6:
+                        lista_sku[numero] = lista_sku.get(numero,0) + 1
                         break
                 except:
                     pass
@@ -76,7 +76,7 @@ def criar_relatorio():
 
     ########################################### Preencher a coluna ['Informou_no_grupo'] se informou ou não ###########################################
 
-    def preencher_coluna_informou(df_sql = df):
+    def preencher_coluna_informou(df_sql: pd.DataFrame = df) -> pd.Series:
 
         contagem_sku_df = df_sql['sku_original'].value_counts()
         aux_informou = {}
@@ -104,7 +104,7 @@ def criar_relatorio():
 
     ########################################### Relatório antes de Estilizar ###########################################
 
-    def relatorio_sem_estilização(df):
+    def relatorio_sem_estilização(df) -> tuple[pd.DataFrame, pd.DataFrame]:
         df['preço total'] = df['preço'] * df['Quantidade Rupturada']
         df_sql = df
         soma_total = df['preço total'].sum()
@@ -128,7 +128,7 @@ def criar_relatorio():
         return df, df_sql
     df, df_sql = relatorio_sem_estilização(df)
 
-    def pegar_data_no_relatorio(df):
+    def pegar_data_no_relatorio(df: pd.DataFrame) -> str:
         data_texto = df['Data'].iloc[1].date()  
         dia = data_texto.day
         mes = data_texto.month
@@ -171,7 +171,7 @@ def criar_relatorio():
     caminho_downloads = Path.home() / 'Downloads'
     nome_do_arquivo = caminho_downloads / f'Relatório_de_Ruptura_{pegar_data_no_relatorio(df)}.xlsx'
 
-    def estilizar_relatorio(df):
+    def estilizar_relatorio(df) -> pd.DataFrame:
         with pd.ExcelWriter(nome_do_arquivo, engine='xlsxwriter') as writer:
 
             df.to_excel(writer, sheet_name='Planilha', index=False)
@@ -233,7 +233,7 @@ def criar_relatorio():
 
 ########################################### Criar banco de dados sql ###########################################
 
-def criar_banco(caminho = caminho_padrao):
+def criar_banco(caminho: Path = caminho_padrao) -> None:
 
     df_sql = askopenfilename(title='Selecione a ruptura finalizada', filetypes=[('Arquivo XLSX', '*.xlsx')])
     df_sql = pd.read_excel(df_sql)
