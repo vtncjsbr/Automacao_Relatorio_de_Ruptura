@@ -23,8 +23,8 @@ def criar_relatorio():
     caminho_arquivo = askopenfilename(title='Selecione o arquivo de Ruptura', filetypes=[('Arquivo XLSX', '*.xlsx')])
     df, nome_do_arquivo = extract_transform_load(caminho_arquivo)
     style(df,nome_do_arquivo)
-    criar_grafico_valor_rupturados(df)
-    criar_grafico_produtos_rupturados(df)
+    criar_grafico_valor_rupturados(df.iloc[:-2])
+    criar_grafico_produtos_rupturados(df.iloc[:-2])
 
 
 ################################################################# JANELA #################################################################

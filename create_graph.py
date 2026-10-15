@@ -17,7 +17,7 @@ def criar_grafico_produtos_rupturados(df):
     ax.set_ylabel('Quantidade de Produtos Rupturadas')
     ax.set_xlabel('Colaborador')
     ax.set_yticks(range(0,maior_valor+2, 2))
-    plt.savefig(f"{caminho_graficos}\Gráfico de Produtos Rupturados_{pegar_data_no_relatorio(df)}.png", dpi=300)
+    plt.savefig(f"{caminho_graficos}/Gráfico de Produtos Rupturados_{pegar_data_no_relatorio(df)}.png", dpi=300)
     plt.close(fig)
 
 def criar_grafico_valor_rupturados(df):
@@ -32,5 +32,5 @@ def criar_grafico_valor_rupturados(df):
     ax.set_xlabel('Colaborador')
     ax.set_ylabel('Preço Total')
 
-    plt.savefig(f"{caminho_graficos}\Gráfico de Valor Rupturados_{pegar_data_no_relatorio(df)}.png", dpi=300)
+    plt.savefig(f"{caminho_graficos}/Gráfico de Valor Rupturados_{pegar_data_no_relatorio(df)}.png", dpi=300)
     plt.close(fig)

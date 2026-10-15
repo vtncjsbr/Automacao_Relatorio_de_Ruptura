@@ -9,11 +9,8 @@ def extract_transform_load(caminho_arquivo):
     df['Informou_no_grupo'] = ''
     df['preço total'] = df['preço'] * df['Quantidade Rupturada']
     df = df[['Data','job_number','produto_original','sku_original','preço', 'Quantidade Rupturada','preço total','Colaborador','Informou_no_grupo']]
-
-    
-    df['preço'] = pd.to_numeric(df['preço'], errors='coerce')
+ 
     df['Data'] = pd.to_datetime(df['Data'], errors='coerce')
-    df['preço total'] = pd.to_numeric(df['preço total'], errors='coerce')
 
     soma_total = df['preço total'].sum()
     soma_formatada = (f'R${soma_total:,.2f} perdidos')
@@ -53,8 +50,7 @@ def extract_transform_load(caminho_arquivo):
             aux_informou[sku] = 'VERIFICAR QUEM ENVIOU'
 
     df.loc[df.index[:-2], 'Informou_no_grupo'] = (
-    df.loc[df.index[:-2], 'sku_original'].map(aux_informou)
-)
+    df.loc[df.index[:-2], 'sku_original'].map(aux_informou))
 
     return df, nome_do_arquivo
 
