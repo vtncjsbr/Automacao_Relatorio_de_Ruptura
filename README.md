@@ -33,7 +33,7 @@ O código conta quantos prints de cada SKU existem na pasta de imagens e compara
 ## Requisitos
 
 - Windows
-- Para o OCR funcionar, o **Tesseract-OCR** precisa estar baixado (veja o link em *Instalação*) e instalado **no mesmo caminho do arquivo `Criar_Ruptura.py`**, ou seja, a pasta `Tesseract-OCR` deve ficar ao lado do script.
+- Para o OCR funcionar, o **Tesseract-OCR** precisa estar baixado (veja o link em *Instalação*) e instalado **no mesmo caminho do arquivo `main.py`**, ou seja, a pasta `Tesseract-OCR` deve ficar ao lado do script.
 
 ## Instalação
 
@@ -41,7 +41,7 @@ O código conta quantos prints de cada SKU existem na pasta de imagens e compara
 
 ## Como usar
 
-1. Execute o programa `Criar_Ruptura.py`. Na primeira execução, a pasta **`Arquivos Ruptura`** é criada na sua área de trabalho, com duas subpastas:
+1. Execute o programa `main.py`. Na primeira execução, a pasta **`Arquivos Ruptura`** é criada na sua área de trabalho, com duas subpastas:
    - `Imagens whatsapp`: coloque aqui os prints dos produtos avisados no grupo.
    - `Gráficos Rupturas`: onde os gráficos serão salvos.
 2. Copie os prints do WhatsApp para `Arquivos Ruptura/Imagens whatsapp`.
